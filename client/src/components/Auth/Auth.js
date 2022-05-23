@@ -9,8 +9,9 @@ const Auth = () => {
 
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState(false);
+    const [isSignup, setIsSignup] = useState(false);
 
-    const isSignup = true;
+    // const isSignup = true;
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
@@ -20,8 +21,14 @@ const Auth = () => {
 
     const handleChange = () => {};
 
+    const swtichMode = () => {
+        setIsSignup((prevIsSignup) => !prevIsSignup);
+        handleShowPassword(false);
+
+    };
+
   return (
-    <Container component="main" midWidth="xs">
+    <Container component="main" maxWidth="xs">
         <Paper className={classes.paper} elevation={3}>
             <Avatar className={classes.avatar}>
                 <LockOutlinedIcon/>
@@ -44,6 +51,13 @@ const Auth = () => {
                 <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                     {isSignup ? 'Sign Up' : 'Sign In'}
                 </Button>
+                <Grid container justify="flex-end">
+                        <Grid item>
+                            <Button onClick={swtichMode}>
+                                {isSignup ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+                            </Button>
+                        </Grid>
+                </Grid>
             </form>
         </Paper>
     </Container>
